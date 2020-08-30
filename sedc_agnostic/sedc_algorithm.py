@@ -3,14 +3,15 @@ Model-agnostic function SEDC for finding Evidence Counterfactuals.
 Last update: 13 May 2020.
 """
 
-""" Import libraries """
 import time
-import numpy as np 
-from scipy.sparse import lil_matrix
-from ordered_set import OrderedSet
 from itertools import compress
 
-from fn_sedc import perturb_fn, expand_and_prune
+import numpy as np
+from ordered_set import OrderedSet
+from scipy.sparse import lil_matrix
+
+from .fn_sedc import perturb_fn, expand_and_prune
+
 
 class SEDC_Explainer(object):
     """Class for generating evidence counterfactuals for classifiers on behavioral/text data"""
