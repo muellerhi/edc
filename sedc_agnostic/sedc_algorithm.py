@@ -122,18 +122,18 @@ class SEDC_Explainer(object):
         feature_set = [frozenset(x) for x in indices_active_elements]
 
         print('Initialization is complete.')
-        print('\n Elapsed time %d \n' %(time.time() - tic))
-        
+        print('Elapsed time %d' % (time.time() - tic))
+
         # *** WHILE LOOP ***
         while (iteration < self.max_iter) and (nb_explanations < self.max_explained) and (
                 len(candidates_to_expand) != 0) and (len(explanation_candidates) != 0) and (
                 (time.time() - tic) < self.time_maximum):
 
             iteration += 1
-            print('\n Iteration %d \n' %iteration)
-            
-            if (iteration==1):
-                perturbed_instances = [perturb_fn(x, inst = instance.copy()) for x in explanation_candidates]
+            print('Iteration %d' % iteration)
+
+            if iteration == 1:
+                perturbed_instances = [perturb_fn(x, inst=instance.copy()) for x in explanation_candidates]
                 scores_explanation_candidates = [self.classifier_fn(x) for x in perturbed_instances]
                 scores_candidates_to_expand = scores_explanation_candidates.copy()
 
@@ -196,9 +196,7 @@ class SEDC_Explainer(object):
                 while ((len(explanation_candidates) == 0) and (it < len(scores_candidates_to_expand2)) and (
                         (time.time() - tic) < self.time_maximum)):
 
-                    print('While loop iteration %d' %it)
-
-                    if (it != 0):
+                    if it != 0:
                         for index in indices:
                             scores_candidates_to_expand2[index] = 2 * score_predicted
 
@@ -217,9 +215,8 @@ class SEDC_Explainer(object):
                     scores_explanation_candidates = func[4]
 
                     it += 1
-                    
-            print('\n Elapsed time %d \n' %(time.time() - tic))
 
+            print('Elapsed time %d ' % (time.time() - tic))
 
         # *** FINAL PART OF ALGORITHM ***
         print('Iterations are done.')
